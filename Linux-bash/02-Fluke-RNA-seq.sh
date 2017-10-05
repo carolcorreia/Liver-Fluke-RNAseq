@@ -92,14 +92,6 @@ rm -r tmp
 mkdir /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq
 cd !$
 
-# Run ngsShoRT in one pair of reads to check if it's working:
-nohup perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
--pe1 /workspace/storage/kmcloughlin/RNAseqTimeCourse/A6522_W10_U_R1_004.fastq.gz \
--pe2 /workspace/storage/kmcloughlin/RNAseqTimeCourse/A6522_W10_U_R2_004.fastq.gz \
--o /home/ccorreia/scratch/PPDbRNAseqTimeCourse/fastq_sequence/A6522_W10_U_004 \
--methods 5adpt_lqr -5a_f Illumina_PE_adapters.txt -5a_mp 90 -5a_del 0 \
--5a_ins 0 -5a_fmi 100 -5a_axn kr -lqs 20 -lq_p 25 -gzip &
-
 
 
 
