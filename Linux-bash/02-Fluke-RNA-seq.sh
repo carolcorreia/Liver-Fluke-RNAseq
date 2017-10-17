@@ -100,14 +100,8 @@ perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
 -pe1 /home/workspace/acampos/flukeRNAseq/fastq/raw_data/A01_S23_L001_R1_001.fastq.gz \
 -pe2 /home/workspace/acampos/flukeRNAseq/fastq/raw_data/A01_S23_L001_R2_001.fastq.gz \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L001 \
--methods 5adpt_lqr -5a_f Adapter_sequence.txt -5a_mp 90 -5a_del 0 \
+-methods 5adpt_lqr -5a_f i-p -5a_mp 90 -5a_del 0 \
 -5a_ins 0 -5a_fmi 100 -5a_axn kr -lqs 20 -lq_p 25 -gzip &
-
-
-# file A01_S23_L001 is created. However, the following message pops up in rodeo: "ERROR \
-# (extract_5adpt_sequences_to_arrays_and_print_header): the lines listed in the \
-# 5' adapter file, Adapter_sequence.txt, do not seem to follow the standard format.\
-# Please use five_prime_adapter_seq_TEMPLATE.txt as your template."
 
 # Compress files with discarded reads:
 for file in `find /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/ \
@@ -136,8 +130,6 @@ chmod 755 ngsshort_summary_cattle_A01_S23_L001.sh
 ./ngsshort_summary_cattle_A01_S23_L001.sh
 
 # Because I have only 1 sample, I do not add header.
-# Because all this is a one-sample trial, I make a directory to keep all files and directories created separately from the future analysis
-mkdir /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/mock_one_sample
 
 # scp gsshort_summary_cattle_A01_S23_L001.txt to share folder
 
@@ -153,24 +145,61 @@ mkdir /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock
 cd /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock
 
 # Run FastQC in one file to see if it's working well:
-fastqc -o /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock \
---noextract --nogroup -t 10 \
-/home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L001/trimmed_A01_S23_L001_R1_001.fastq.gz
+fastqc -o /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock --noextract --nogroup -t 10 /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L001/trimmed_A01_S23_L001_R1_001.fastq.gz
 
-#I have an error message:
-# Failed to process /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L001/trimmed_A01_S23_L001_R1_001.fastq.gz
-# java.io.EOFException
-#	at java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:268)
-#	at java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:258)
-#	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:164)
-#	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79)
-#	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91)
-#	at uk.ac.babraham.FastQC.Utilities.MultiMemberGZIPInputStream.<init>(MultiMemberGZIPInputStream.java:37)
-#	at uk.ac.babraham.FastQC.Sequence.FastQFile.<init>(FastQFile.java:80)
-#	at uk.ac.babraham.FastQC.Sequence.SequenceFactory.getSequenceFile(SequenceFactory.java:106)
-#	at uk.ac.babraham.FastQC.Sequence.SequenceFactory.getSequenceFile(SequenceFactory.java:62)
-#	at uk.ac.babraham.FastQC.Analysis.OfflineRunner.processFile(OfflineRunner.java:129)
-#	at uk.ac.babraham.FastQC.Analysis.OfflineRunner.<init>(OfflineRunner.java:102)
-#	at uk.ac.babraham.FastQC.FastQCApplication.main(FastQCApplication.java:316)
+# Secure copy to my laptop
+scp -r acampos@rodeo.ucd.ie:/home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock/trimmed_A01_S23_L001_R1_001_fastqc.zip .
 
+# unzip content of file
+unzip trimmed_A01_S23_L001_R1_001_fastqc.zip
 
+# with do with R2
+fastqc -o /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock --noextract --nogroup -t 10 /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L001/trimmed_A01_S23_L001_R2_001.fastq.gz
+
+# Secure copy to share folder
+scp -r acampos@rodeo.ucd.ie:/home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock/trimmed_A01_S23_L001_R2_001_fastqc.zip .
+
+# Run ngsShoRT in one pair of reads to check if it's working:
+perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+-pe1 /home/workspace/acampos/flukeRNAseq/fastq/raw_data/A01_S23_L002_R1_001.fastq.gz \
+-pe2 /home/workspace/acampos/flukeRNAseq/fastq/raw_data/A01_S23_L002_R2_001.fastq.gz \
+-o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L002 \
+-methods 5adpt_lqr -5a_f i-p -5a_mp 90 -5a_del 0 \
+-5a_ins 0 -5a_fmi 100 -5a_axn kr -lqs 20 -lq_p 25 -gzip &
+
+# Compress files with discarded reads:
+for file in `find /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/ \
+-name extracted_*.txt`; do echo "gzip -9 $file" >> discarded_compression.sh; \
+done;
+
+# Split and run all scripts on Stampede:
+split -d -l 70 discarded_compression.sh discarded_compression.sh.
+for script in `ls discarded_compression.sh.*`
+do
+chmod 755 $script
+nohup ./$script &
+done
+
+# Gather ngsShoRT reports from sample into one file:
+for file in `find /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/ \
+-name final_PE_report.txt`; \
+do echo echo \
+"\`dirname $file | perl -pe 's/.*(A\d\d\d\d.*\d)/\$1/'\` \
+\`grep 'Read Pair Count:' $file\` \
+\`grep 'Removed PE Pair\* Count:' $file\` >> \
+ngsshort_cattle_A01_S23_L002.txt" >> ngsshort_summary_cattle_A01_S23_L002.sh
+done
+
+chmod 755 ngsshort_summary_cattle_A01_S23_L002.sh
+./ngsshort_summary_cattle_A01_S23_L002.sh
+
+# Go to directory for FASTQC
+cd /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock
+
+# Run FastQC in one file to see if it's working well:
+
+fastqc -o /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock --noextract --nogroup -t 10 /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L002/trimmed_A01_S23_L002_R1_001.fastq.gz
+fastqc -o /home/workspace/acampos/flukeRNAseq/quality_check/post-filtering-mock --noextract --nogroup -t 10 /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/A01_S23_L002/trimmed_A01_S23_L002_R2_001.fastq.gz
+
+# Copy file on share folder and unzip
+### and checked the HTML report. It worked fine.
