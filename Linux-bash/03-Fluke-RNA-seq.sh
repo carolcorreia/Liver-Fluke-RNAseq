@@ -107,6 +107,17 @@ echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 
 -5a_del 0 -5a_ins 0 -5a_fmi 100 -5a_axn kr -lqs 20 -lq_p 25 -gzip" \
 >> filtering.008.sh; done;
 
-# Change permission for execute:
+# Change permission for execute and run all scripts on Stampede:
 
 chmod 755 filtering.00*.sh
+
+for script in `ls filtering.00*.sh`
+do
+nohup ./$script > ${script}.nohup &
+done
+
+# Scripts are running. There is a message that pops up:
+
+## nohup: ignoring input and redirecting stderr to stdout
+
+
