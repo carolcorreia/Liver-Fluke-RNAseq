@@ -23,7 +23,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L001_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -34,7 +34,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L002_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -45,7 +45,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L003_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -56,7 +56,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L004_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -67,7 +67,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L005_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -78,7 +78,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L006_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -89,7 +89,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L007_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
@@ -100,7 +100,7 @@ for file in `find /home/workspace/acampos/flukeRNAseq/fastq/raw_data/ \
 -name *L008_R1_001.fastq.gz`; \
 do file2=`echo $file | perl -p -e 's/R1(_001.fastq.gz)$/R2$1/'`; \
 sample=`basename $file | perl -p -e 's/_R1_001.fastq.gz$//'`; \
-echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 20 -mode trim -min_rl 100 \
+echo "perl /usr/local/src/ngsShoRT_2.2/ngsShoRT.pl -t 5 -mode trim -min_rl 100 \
 -pe1 $file -pe2 $file2 \
 -o /home/workspace/acampos/flukeRNAseq/fastq/filt_fastq/$sample \
 -methods 5adpt_lqr -5a_f i-p -5a_mp 90 \
